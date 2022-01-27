@@ -1,4 +1,4 @@
-# sticker_fiend_vue
+# stickerfiend_vue
 
 ## Project setup
 ```
@@ -17,6 +17,3 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-Change to track
-/Users/eucalyptus/Desktop/StickerFiend/sticker_fiend_vue and more aRG!

@@ -1,5 +1,5 @@
 {
-  "name": "sticker_fiend_vue",
+  "name": "stickerfiend_vue",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "bulma": "^0.9.3",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
