@@ -1,8 +1,8 @@
 
 TO DO:
--Install and setup (Django)
--Install and setup (Vue)
--Include Font Awesome
+DONE -Install and setup (Django)
+DONE -Install and setup (Vue)
+DONE -Include Font Awesome
 -Set up the base template
 -Create django app and models for products
 -Create serializer and views for the products
