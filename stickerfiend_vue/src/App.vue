@@ -14,8 +14,8 @@
 
   <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
     <div class="navbar-end">
-      <router-link to="/small" class="navbar-item">Small</router-link>
-      <router-link to="/large" class="navbar-item">Large</router-link>
+      <router-link to="/frontend" class="navbar-item">Frontend</router-link>
+      <router-link to="/backend" class="navbar-item">Backend</router-link>
       <div class="navbar-item">
         <div class="buttons">
           <router-link to="/log-in" class="button is-light">Log In</router-link>

@@ -5,7 +5,7 @@ DONE -Install and setup (Vue)
 DONE -Include Font Awesome
 DONE -Set up the base template
 DONE -Create django app and models for products
--Create serializer and views for the products
+DONE -Create serializer and views for the products
 -View a product 
 -Sette opp Vuex / State
 -Make it possible to add to cart
