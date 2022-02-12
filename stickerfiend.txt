@@ -6,9 +6,17 @@ DONE -Include Font Awesome
 DONE -Set up the base template
 DONE -Create django app and models for products
 DONE -Create serializer and views for the products
+-Create Simple front page
 -View a product 
+    -Create viewset in Django
+    -Create vue page for showing products
+    -Add link to deatail page
 -Sette opp Vuex / State
 -Make it possible to add to cart
+    -Add functionality to vuex 
+    -Inistialze Store app in Vue
+    -Add Button to product pages
+    -Show a test message
 -Implement a loading bar
 -Set document title (All pages)
 -Make it possible to view a category
