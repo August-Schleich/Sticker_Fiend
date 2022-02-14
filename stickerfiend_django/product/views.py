@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.views import Response
 
-from .models import Product
+from .models import Product, Category
 from .serializers import ProductSerializer
 
 
