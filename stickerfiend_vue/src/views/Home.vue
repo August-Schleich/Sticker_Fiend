@@ -1,6 +1,6 @@
 <template>
   <div class="home">
- <section class ="hero is-medium is-dark mb-6"> 
+ <section class ="hero is-small is-dark mb-6"> 
   <div class = "hero-body has-text-centered">
     <p class="title mb-6">
       Welcome to StickerFiend
@@ -23,7 +23,7 @@
       >
       
         <div class="box">
-          <figure class="image mb-4 ">
+          <figure class="image mb-4 is-4">
             <img :src="product.get_thumbnail">
             </figure>
 
