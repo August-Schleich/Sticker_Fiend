@@ -17,7 +17,7 @@ DONE -Make it possible to add to cart
    DONE -Inistialze Store app in Vue
    DONE -Add Button to product pages
    DONE -Show a test message
--Implement a loading bar
+DONE -Implement a loading bar
 -Set document title (All pages)
 -Make it possible to view a category
 -Add search functionality
