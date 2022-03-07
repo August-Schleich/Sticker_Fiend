@@ -11,11 +11,30 @@
    </a>
     
   </div>
+ <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu }">
+        <div class="navbar-start">
+          <div class="navbar-item">
+            <form method="get" action="/search">
+              <div class="field has-addons">
+                <div class="control">
+                  <input type="text" class="input" placeholder="Search" name="query">
+                </div>
 
-  <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
+                <div class="control">
+                  <button class="button is-success">
+                      <span class="icon">
+                      <i class="fas fa-search"></i>
+                      </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
     <div class="navbar-end">
-      <router-link to="/frontend" class="navbar-item">Frontend</router-link>
-      <router-link to="/backend" class="navbar-item">Backend</router-link>
+      <router-link to="/singles" class="navbar-item">Singles</router-link>
+      <router-link to="/sticker-packs" class="navbar-item">Sticker Packs</router-link>
       <div class="navbar-item">
         <div class="buttons">
           <router-link to="/log-in" class="button is-light">Log In</router-link>
