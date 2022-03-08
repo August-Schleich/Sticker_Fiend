@@ -21,7 +21,7 @@ DONE -Implement a loading bar
 DONE -Set document title (All pages)
 DONE -Make it possible to view a category
     DONE -Convert the product to a component
--Add search functionality
+DONE -Add search functionality
 -View cart
 -Change contents of cart
 -Make it possible to sign up
