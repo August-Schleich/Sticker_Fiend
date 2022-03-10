@@ -23,7 +23,7 @@ DONE -Make it possible to view a category
     DONE -Convert the product to a component
 DONE -Add search functionality
 DONE-View cart
--Change contents of cart
+DONE -Change contents of cart
 -Make it possible to sign up
 -Make it possible to log in
 -Create a simple my account page
