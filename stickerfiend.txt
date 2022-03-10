@@ -22,7 +22,7 @@ DONE -Set document title (All pages)
 DONE -Make it possible to view a category
     DONE -Convert the product to a component
 DONE -Add search functionality
--View cart
+DONE-View cart
 -Change contents of cart
 -Make it possible to sign up
 -Make it possible to log in
