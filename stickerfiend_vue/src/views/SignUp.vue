@@ -1,8 +1,8 @@
 <template>
     <div class="page-sign-up">
-        <div class = "columns">
-            <div class = "column is-4 is-offset-4">
-                <h1 class ="title">Sign up</h1>
+        <div class="columns">
+            <div class="column is-4 is-offset-4">
+                <h1 class="title">Sign up</h1>
 
                 <form @submit.prevent="submitForm">
                     <div class="field">
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="field">
-                        <label>Confirm password</label>
+                        <label>Repeat password</label>
                         <div class="control">
                             <input type="password" class="input" v-model="password2">
                         </div>
@@ -32,7 +32,7 @@
 
                     <div class="field">
                         <div class="control">
-                            <button  class="button is-dark">Sign up</button>
+                            <button class="button is-dark">Sign up</button>
                         </div>
                     </div>
 
@@ -46,42 +46,37 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from 'axios'
 import { toast } from 'bulma-toast'
-
-
 export default {
     name: 'SignUp',
     data() {
         return {
-            username: "",
-            password: "",
-            password2: "",
-            errors:[]
+            username: '',
+            password: '',
+            password2: '',
+            errors: []
         }
     },
-     methods: { 
+    methods: {
         submitForm() {
             this.errors = []
-
             if (this.username === '') {
-                this.errors.push("The username is missing ")
+                this.errors.push('The username is missing')
             }
-             if (this.password === '') {
-                this.errors.push("The password is too short ")
+            if (this.password === '') {
+                this.errors.push('The password is too short')
             }
-             if (this.password !== password2) {
-                this.errors.push("The passwords dont match ")
+            if (this.password !== this.password2) {
+                this.errors.push('The passwords doesn\'t match')
             }
-
-            if (!this.errors.length){
+            if (!this.errors.length) {
                 const formData = {
                     username: this.username,
                     password: this.password
                 }
-
-             axios
-                 .post("/api/v1/users/", formData)
+                axios
+                    .post("/api/v1/users/", formData)
                     .then(response => {
                         toast({
                             message: 'Account created, please log in!',
@@ -105,10 +100,8 @@ export default {
                             console.log(JSON.stringify(error))
                         }
                     })
-                
             }
-
-        } 
+        }
     }
 }
 </script>
