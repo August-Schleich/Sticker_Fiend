@@ -22,10 +22,10 @@ DONE -Set document title (All pages)
 DONE -Make it possible to view a category
     DONE -Convert the product to a component
 DONE -Add search functionality
-DONE-View cart
+DONE -View cart
 DONE -Change contents of cart
--Make it possible to sign up
--Make it possible to log in
+DONE -Make it possible to sign up
+DONE -Make it possible to log in
 -Create a simple my account page
 -Proceed to checkout (Authentication)
 -Create a simple success page
