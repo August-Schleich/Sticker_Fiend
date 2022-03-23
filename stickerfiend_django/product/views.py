@@ -29,6 +29,7 @@ class ProductDetail(APIView):
         serializer = ProductSerializer(product)
         return Response(serializer.data)
     
+    
 class CategoryDetail(APIView):
     def get_object(self, category_slug):
         try:
