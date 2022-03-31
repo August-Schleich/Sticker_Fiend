@@ -27,8 +27,8 @@ DONE -Change contents of cart
 DONE -Make it possible to sign up
 DONE -Make it possible to log in
 DONE -Create a simple my account page
-DONE-Proceed to checkout (Authentication)
--Create a simple success page
+DONE -Proceed to checkout (Authentication)
+DONE -Create a simple success page
 -Show my orders on the my account page
 -Deploy Django 
 -Deploy Vue (Generate files locally, Send files to server, Set up nginx virtual host)
