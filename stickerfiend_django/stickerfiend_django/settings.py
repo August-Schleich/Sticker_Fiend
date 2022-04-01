@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-a8j6)d3evp@^b)ea6zfz(0jpuyu-eb-nw5&41_a-v@^$!ofx4u
 DEBUG = True
 
 ALLOWED_HOSTS = []
+STRIPE_SECRET_KEY = "sk_test_51KjVtJKE22fyf9kvxBgOPMhIm2yhh4nUiNVS1s263fFlKDO1FXkaC2vPaB49lMTNvh9c2l8DR9efDXrEWVQ8CQwj00JlT9e6SM"
+
 
 
 # Application definition
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'djoser',
 
     'product',
+    'order',
     
     
 ]

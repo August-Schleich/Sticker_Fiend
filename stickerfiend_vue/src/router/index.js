@@ -36,6 +36,11 @@ const routes = [
     component: Cart
   },
   {
+    path: '/cart/success',
+    name: 'Success',
+    component: Success
+  },
+  {
   path: '/cart/checkout',
   name: 'Checkout',
   component: Checkout,
@@ -43,14 +48,8 @@ const routes = [
     requireLogin: true
   }
 },
-{
-path: '/success',
-name: 'Success',
-component: Success,
-meta: { 
-  requireLogin: true
-}
-},
+
+
   {
     path:'/:category_slug/:product_slug/',
     name: 'Product',

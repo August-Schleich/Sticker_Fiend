@@ -87,9 +87,9 @@
                         </div>
 
                         <div class="field">
-                            <label>City*</label>
+                            <label>Place*</label>
                             <div class="control">
-                                <input type="text" class="input" v-model="place" placeholder = "City">
+                                <input type="text" class="input" v-model="place" placeholder = "Place">
                             </div>
                         </div>
                     </div>
@@ -115,11 +115,11 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from 'axios'
 export default {
-    name: "Checkout",
-    data(){
-        return{ 
+    name: 'Checkout',
+    data() {
+        return {
             cart: {
                 items: []
             },
@@ -127,18 +127,24 @@ export default {
             card: {},
             first_name: '',
             last_name: '',
-            email: "",
-            phone: "",
-            address: "",
-            zipcode: "",
-            place: "",
-            errors: []       
-         }
+            email: '',
+            phone: '',
+            address: '',
+            zipcode: '',
+            place: '',
+            errors: []
+        }
     },
-    mounted() { 
-        document.title = "Checkout | StickerFiend"
-
+    mounted() {
+        document.title = 'Checkout | StickerFiend'
         this.cart = this.$store.state.cart
+
+        if (this.cartTotalLength > 0) {
+            this.stripe = Stripe('pk_test_51KjVtJKE22fyf9kvIkgULRUYaU2yyYmdyVFrX7IRxcq1YBw2n3Tstm4yljEVE2xF6nfRQc7TS7cyqg67cmhabyUo007HPl3c8h')
+            const elements = this.stripe.elements();
+            this.card = elements.create('card', { hidePostalCode: true })
+            this.card.mount('#card-element')
+        }
     },
     methods: {
         getItemTotal(item) {
@@ -167,21 +173,67 @@ export default {
             if (this.place === '') {
                 this.errors.push('The place field is missing!')
             }
-
+            if (!this.errors.length) {
+                this.$store.commit('setIsLoading', true)
+                this.stripe.createToken(this.card).then(result => {                    
+                    if (result.error) {
+                        this.$store.commit('setIsLoading', false)
+                        this.errors.push('Something went wrong with Stripe. Please try again')
+                        console.log(result.error.message)
+                    } else {
+                        this.stripeTokenHandler(result.token)
+                    }
+                })
+            }
+        },
+        async stripeTokenHandler(token) {
+            const items = []
+            for (let i = 0; i < this.cart.items.length; i++) {
+                const item = this.cart.items[i]
+                const obj = {
+                    product: item.product.id,
+                    quantity: item.quantity,
+                    price: item.product.price * item.quantity
+                }
+                items.push(obj)
+            }
+            const data = {
+                'first_name': this.first_name,
+                'last_name': this.last_name,
+                'email': this.email,
+                'address': this.address,
+                'zipcode': this.zipcode,
+                'place': this.place,
+                'phone': this.phone,
+                'items': items,
+                'stripe_token': token.id
+            }
+            await axios
+                .post('/api/v1/checkout/', data)
+                .then(response => {
+                    this.$store.commit('clearCart')
+                    this.$router.push('/cart/success')
+                })
+                .catch(error => {
+                    this.errors.push('Something went wrong. Please try again')
+                    console.log(error)
+                    console.log("im here bitch!")
+                })
+                
+                this.$store.commit('setIsLoading', false)
         }
     },
     computed: {
-        cartTotalLength() {
-            return this.cart.items.reduce((acc, curVal) => {
-                return acc += curVal.quantity
-            },0)
-        },
         cartTotalPrice() {
             return this.cart.items.reduce((acc, curVal) => {
                 return acc += curVal.product.price * curVal.quantity
-            },0)
+            }, 0)
+        },
+        cartTotalLength() {
+            return this.cart.items.reduce((acc, curVal) => {
+                return acc += curVal.quantity
+            }, 0)
         }
     }
 }
-
 </script>
