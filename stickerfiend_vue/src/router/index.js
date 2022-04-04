@@ -78,6 +78,11 @@ const routes = [
     name: 'LogIn',
     component: LogIn
   },
+  // {
+  //   path: '/log-out',
+  //   name: 'LogOut',
+  //   component: LogOut
+  // },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
