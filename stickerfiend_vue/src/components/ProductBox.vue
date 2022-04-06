@@ -1,14 +1,14 @@
 <template>  
 
- <div class ="column is-3 " >
-        <div class="box has-background-grey-dark">
-          <figure class="image mb-4 is-4">
-            <img :src="product.get_thumbnail">
+ <div class ="column is-3 " style="border-radius:5px;" >
+        <div class="box" style="background-color:#989C94;">
+          <figure class="image mb-4 is-4" >
+            <img style="border-top-left-radius:5px;border-top-right-radius:5px;" :src="product.get_thumbnail">
             </figure>
 
               <h3 class ="is-size-4 has-text-white">{{ product.name }}</h3>
-              <p class ="is-size-6 has-text-white">${{ product.price }}</p>
-               <router-link v-bind:to="product.get_absolute_url" class = "button is-dark mt-4">View Details</router-link>
+              <p class ="is-size-6 has-text-white">Price: ${{ product.price }}</p>
+               <router-link v-bind:to="product.get_absolute_url" class = "button is-success mt-3">View Details</router-link>
           </div>
       </div>
 

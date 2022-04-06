@@ -2,7 +2,7 @@
     <div class = "page=cart">
         <div class = "columns is-multiline">
                 <div class = "column is-12">
-                    <h1 class ="title">Cart</h1>
+                    <h1 class ="title" style="color:white">Cart</h1>
                 </div>
                 <div class = "column is-12 box">
                       <table class="table is-fullwidth" v-if="cartTotalLength">

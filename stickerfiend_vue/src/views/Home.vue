@@ -13,7 +13,7 @@
 
   <div class="columns is-multiline">
     <div class ="column is-12">
-      <h2 class="is-size-2 has-text-centered">Latest Stickers</h2>
+      <h2 class="is-size-2 has-text-centered " style="color:white">Latest Stickers</h2>
     </div>
      
       <ProductBox

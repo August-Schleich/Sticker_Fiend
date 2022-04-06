@@ -2,25 +2,25 @@
     <div class="page-sign-up">
         <div class="columns">
             <div class="column is-4 is-offset-4">
-                <h1 class="title">Sign up</h1>
+                <h1 class="title" style="color:white">Sign up</h1>
 
                 <form @submit.prevent="submitForm">
                     <div class="field">
-                        <label>Username</label>
+                        <label style="color:white" >Username</label>
                         <div class="control">
                             <input type="text" class="input" v-model="username">
                         </div>
                     </div>
 
                     <div class="field">
-                        <label>Password</label>
+                        <label style="color:white" >Password</label>
                         <div class="control">
                             <input type="password" class="input" v-model="password">
                         </div>
                     </div>
 
                     <div class="field">
-                        <label>Repeat password</label>
+                        <label style="color:white" >Repeat password</label>
                         <div class="control">
                             <input type="password" class="input" v-model="password2">
                         </div>
@@ -32,13 +32,13 @@
 
                     <div class="field">
                         <div class="control">
-                            <button class="button is-dark">Sign up</button>
+                            <button  class="button is-dark">Sign up</button>
                         </div>
                     </div>
 
                     <hr>
 
-                    Or <router-link to="/log-in">click here</router-link> to log in!
+                   <p style="color:white"> Or <router-link style="color:#639FAB" to="/log-in">click here</router-link> to log in!</p>
                 </form>
             </div>
         </div>
