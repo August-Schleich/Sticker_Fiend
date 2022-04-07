@@ -6,9 +6,9 @@
             <img style="border-top-left-radius:5px;border-top-right-radius:5px;" :src="product.get_thumbnail">
             </figure>
 
-              <h3 class ="is-size-4 has-text-white">{{ product.name }}</h3>
+              <h3 class ="is-size-6 has-text-white">{{ product.name }}</h3>
               <p class ="is-size-6 has-text-white">Price: ${{ product.price }}</p>
-               <router-link v-bind:to="product.get_absolute_url" class = "button is-success mt-3">View Details</router-link>
+               <router-link v-bind:to="product.get_absolute_url" class = "button  is-success mt-1">View Details</router-link>
           </div>
       </div>
 
