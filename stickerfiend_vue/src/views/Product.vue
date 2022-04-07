@@ -1,5 +1,5 @@
 <template>
-    <div class = "page-product column is-10">
+    <div class = "page-product column is-8">
         <div class="columns is-multiline is-centered">
             <div class = "column is-6">
                 <figure class ="image mb-6">
@@ -13,10 +13,9 @@
                
                 <h2 class= "subtitle" style="color:white;margin-top:10px;">Information</h2>
                  <h1 class="title" style="color:white">{{ product.name }}</h1>
-                <p style="color:#BBCDE5">Description:</p>
-                
+                <p style="color:#639FAB">Description:</p>
                 <p style="color:white">{{ product.description }}</p>
-                <p><strong style="color:white">Price: ${{ product.price}}</strong></p>
+                <p><strong style="color:white">${{ product.price}}</strong></p>
                 <div class = "field has-addons mt-4">
                     <div class ="control">
                         <input type= "number" class="input" min="1" v-model="quantity">

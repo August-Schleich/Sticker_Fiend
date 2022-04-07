@@ -1,8 +1,8 @@
 <template>
     <div class="page-my-account">
-        <div class="columns is-multiline">
+        <div class="columns is-multiline" style="margin:auto;">
             <div class="column is-12">
-                <h1 class="title">My account</h1>
+                <h1 class="title" style="color:white" >My account</h1>
                 
 
             </div>
@@ -14,7 +14,7 @@
             <hr>
 
             <div class="column is-12">
-                <h2 class="subtitle">My orders</h2>
+                <h2 class="subtitle" style="color:white">My orders</h2>
 
                 <OrderSummary
                     v-for="order in orders"

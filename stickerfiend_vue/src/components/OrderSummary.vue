@@ -1,9 +1,7 @@
 <template>
     <div class="box mb-4">
-        <h3 class="is-size-4 mb-6">Order #{{username}}</h3>
-
         <h4 class="is-size-5">Products</h4>
-
+        
         <table class="table is-fullwidth">
             <thead>
                 <tr>

@@ -27,9 +27,9 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ ]
-# STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY'] 
-STRIPE_SECRET_KEY = str(os.getenv('SECRET_KEY'))
+ALLOWED_HOSTS = []
+
+STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY'))
 
 
 

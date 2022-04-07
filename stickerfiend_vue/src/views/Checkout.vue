@@ -2,7 +2,7 @@
   <div class = "page-checkout">
       <div class= "columns is-multiline">
           <div class = "column is-12">
-              <h1 class = "title">Checkout</h1>
+              <h1 class = "title" style="color:white" >Checkout</h1>
           </div>
             <div class = "column is-12 box">
               <table class="table is-fullwidth">
@@ -197,6 +197,7 @@ export default {
                 }
                 items.push(obj)
             }
+            
             const data = {
                 'first_name': this.first_name,
                 'last_name': this.last_name,
