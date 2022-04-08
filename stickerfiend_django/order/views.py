@@ -36,7 +36,7 @@ def checkout(request):
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Exception:
-            # SOMTHING BROKEN HERE HAD TO PASS DIFFERENT REPSONSE TO MOVEW FORWARD COULD BE A PROBLEM IN FUTURE lol
+            # SOMTHING BROKEN HERE HAD TO PASS DIFFERENT REPSONSE TO MOVE FORWARD COULD BE A PROBLEM IN FUTURE lol
            return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
