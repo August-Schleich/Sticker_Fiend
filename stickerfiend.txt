@@ -31,6 +31,9 @@ DONE -Proceed to checkout (Authentication)
 DONE -Create a simple success page
 -Show my orders on the my account page
 -Deploy Django 
+    DONE -Create Server
+    DONE -Install Software
+
 -Deploy Vue (Generate files locally, Send files to server, Set up nginx virtual host)
 
 
@@ -57,3 +60,91 @@ bulma
 
 
 wtf django
+
+
+
+
+NAME='stickerfiend_django''
+DJANGODIR=/webapps/stickerfiend/stickerfiend_django
+SOCKFILE=/webapps/stickerfiend/environment_3_8_2/run/gunicorn.sock
+USER=stickerfienduser
+GROUP=webapps
+NUM_WORKERS=3
+DJANGO_SETTINGS_MODULE=stickerfiend_django.settingsprod
+DJANGO_WSGI_MODULE=stickerfiends_django.wsgi
+TIMEOUT=120
+
+cd $DJANGODIR
+source ../bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+exec ../environment_3_8_2/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+--name $NAME \
+--workers $NUM_WORKERS \
+--timeout $TIMEOUT \
+--user=$USER --group=$GROUP \
+--bind=unix:$SOCKFILE \
+--log-level=debug \
+--log-file=-
+
+
+
+
+
+[program:stickerfiend_django]
+command = /webapps/stickerfiend/environment_3_8_2/bin/gunicorn_start
+user = stickerfiend
+stdout_logfile = /webapps/stickerfiend/environment_3_8_2/logs/supervisor.log
+redirect_stderr = true
+environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+
+
+
+NAME='stickerfiend_django'
+DJANGODIR=/webapps/stickerfiend/stickerfiend_django
+SOCKFILE=/webapps/stickerfiend/environment_3_8_2/run/gunicorn.sock
+USER=stickerfienduser
+GROUP=webapps
+NUM_WORKERS=3
+DJANGO_SETTINGS_MODULE=stickerfiend_django.settingsprod
+DJANGO_WSGI_MODULE=stickerfiend_django.wsgi
+TIMEOUT=120
+
+cd $DJANGODIR
+source ../environment_3_8_2/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+exec ../environment_3_8_2/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+--name $NAME \
+--workers $NUM_WORKERS \
+--timeout $TIMEOUT \
+--user=$USER --group=$GROUP \
+--bind=unix:$SOCKFILE \
+--log-level=debug \
+--log-file=-
+
+
+
+
+
+
+ERROR GUNICORN ERROR
+
+supervisor: couldn't exec /webapps/stickerfiend/environment_3_8_2/bin/gunicorn_start: ENOEXEC supervisor: child process was not spawned
+
+
+
+
+LAST TERMINAL ENTRIES 04/22/11;26am
+(environment_3_8_2) root@ubuntu-stickerfiend:/etc/supervisor/conf.d# cd /etc/nginx/sites-available/
+(environment_3_8_2) root@ubuntu-stickerfiend:/etc/nginx/sites-available# ls
+default
+(environment_3_8_2) root@ubuntu-stickerfiend:/etc/nginx/sites-available# vi apistickerfiend
