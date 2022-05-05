@@ -64,87 +64,181 @@ wtf django
 
 
 
-NAME='stickerfiend_django''
-DJANGODIR=/webapps/stickerfiend/stickerfiend_django
-SOCKFILE=/webapps/stickerfiend/environment_3_8_2/run/gunicorn.sock
-USER=stickerfienduser
-GROUP=webapps
-NUM_WORKERS=3
-DJANGO_SETTINGS_MODULE=stickerfiend_django.settingsprod
-DJANGO_WSGI_MODULE=stickerfiends_django.wsgi
-TIMEOUT=120
-
-cd $DJANGODIR
-source ../bin/activate
-export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
-export PYTHONPATH=$DJANGODIR:$PYTHONPATH
-
-RUNDIR=$(dirname $SOCKFILE)
-test -d $RUNDIR || mkdir -p $RUNDIR
-
-exec ../environment_3_8_2/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
---name $NAME \
---workers $NUM_WORKERS \
---timeout $TIMEOUT \
---user=$USER --group=$GROUP \
---bind=unix:$SOCKFILE \
---log-level=debug \
---log-file=-
-
-
-
-
-
-[program:stickerfiend_django]
-command = /webapps/stickerfiend/environment_3_8_2/bin/gunicorn_start
-user = stickerfiend
-stdout_logfile = /webapps/stickerfiend/environment_3_8_2/logs/supervisor.log
-redirect_stderr = true
-environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
-
-
-
-NAME='stickerfiend_django'
-DJANGODIR=/webapps/stickerfiend/stickerfiend_django
-SOCKFILE=/webapps/stickerfiend/environment_3_8_2/run/gunicorn.sock
-USER=stickerfienduser
-GROUP=webapps
-NUM_WORKERS=3
-DJANGO_SETTINGS_MODULE=stickerfiend_django.settingsprod
-DJANGO_WSGI_MODULE=stickerfiend_django.wsgi
-TIMEOUT=120
-
-cd $DJANGODIR
-source ../environment_3_8_2/bin/activate
-export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
-export PYTHONPATH=$DJANGODIR:$PYTHONPATH
-
-RUNDIR=$(dirname $SOCKFILE)
-test -d $RUNDIR || mkdir -p $RUNDIR
-
-exec ../environment_3_8_2/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
---name $NAME \
---workers $NUM_WORKERS \
---timeout $TIMEOUT \
---user=$USER --group=$GROUP \
---bind=unix:$SOCKFILE \
---log-level=debug \
---log-file=-
 
 
 
 
 
 
-ERROR GUNICORN ERROR
-
-supervisor: couldn't exec /webapps/stickerfiend/environment_3_8_2/bin/gunicorn_start: ENOEXEC supervisor: child process was not spawned
 
 
+server {
+	listen 80;
+	server_name stickerfiend.net;
+	return 301 https://stickerfiend.net$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	server_name stickerfiend.net;
+
+	client_max_body_size 4G;
+
+	error_log  /webapps/stickerfiend/environment_3_8_2/logs/nginx-vue-error.log;
+	access_log /webapps/stickerfiend/environment_3_8_2/logs/nginx-vue-access.log;
+
+	ssl_certificate /etc/letsencrypt/live/stickerfiend.net/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/stickerfiend.net/privkey.pem;
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+	ssl_prefer_server_ciphers on;
+	ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+	charset utf-8;
+	root /webapps/stickerfiend/stickerfiend_vue/dist;
+	index index.html index.htm;
+
+	location / {
+		root /webapps/stickerfiend/stickerfiend_vue/dist;
+		try_files $uri /index.html;
+	}
+}
+
+BREKQ#@$#!@$#@!$
+
+upstream stickerfiend_app_server {
+	server unix:/webapps/stickerfiend/environment_3_8_2/run/gunicorn.sock fail_timeout=0;
+}
+
+server {
+	listen 80;
+	server_name apistickerfiend.stickerfiend.net;
+	return 301 https://apistickerfiend.stickerfiend.net$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	server_name apistickerfiend.stickerfiend.net;
+
+	client_max_body_size 4G;
+
+	access_log /webapps/stickerfiend/environment_3_8_2/logs/nginx-django-access.log;
+	error_log /webapps/stickerfiend/environment_3_8_2/logs/nginx-django-error.log;
+
+	ssl_certificate /etc/letsencrypt/live/apistickerfiend.stickerfiend.net/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/apistickerfiend.stickerfiend.net/privkey.pem;
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+	ssl_prefer_server_ciphers on;
+	ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+	location /static/ {
+		alias /webapps/stickerfiend//environment_3_8_2/stickerfiend/static/;
+	}
+
+	location /media/ {
+		alias /webapps/stickerfiend/stickerfiend_django/media/uploads/;
+	}
+
+	location / {
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+		proxy_set_header Host $http_host;
+
+		proxy_redirect off;
+
+		if (!-f $request_filename) {
+			proxy_pass http://stickerfiend_app_server;
+		}
+	}
+}
 
 
-LAST TERMINAL ENTRIES 04/22/11;26am
-(environment_3_8_2) root@ubuntu-stickerfiend:/etc/supervisor/conf.d# cd /etc/nginx/sites-available/
-(environment_3_8_2) root@ubuntu-stickerfiend:/etc/nginx/sites-available# ls
-default
-(environment_3_8_2) root@ubuntu-stickerfiend:/etc/nginx/sites-available# vi apistickerfiend
+
+
+
+
+
+
+
+
+
+
+stickerfiend.net config NOT APIs
+
+        listen 443 ssl;
+        server_name stickerfiend.net;
+
+        client_max_body_size 4G;
+
+        access_log /webapps/stickerfiend/environment_3_8_2/logs/nginx-django-access.log;
+        error_log /webapps/stickerfiend/environment_3_8_2/logs/nginx-django-error.log;
+
+        ssl_certificate /etc/letsencrypt/live/stickerfiend.net/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/stickerfiend.net/privkey.pem;
+
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_prefer_server_ciphers on;
+        ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+        location /static/ {
+                alias /webapps/stickerfiend//environment_3_8_2/stickerfiend/static/;
+        }
+
+        location /media/ {
+                alias /webapps/stickerfiend/stickerfiend_django/media/;
+        }
+
+        location / {
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                proxy_set_header Host $http_host;
+
+                proxy_redirect off;
+
+                if (!-f $request_filename) {
+                        proxy_pass http://stickerfiend_app_server;
+                }
+        }
+}
+
+
+
+
+
+
+REAL NGINX CONFIG FOR Vue
+
+
+
+server {
+	listen 80;
+	server_name stickerfiend.net;
+	return 301 https://stickerfiend.net$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	server_name stickerfiend.net;
+
+	client_max_body_size 4G;
+
+	error_log  /webapps/stickerfiend/environment_3_8_2/logs/nginx-vue-error.log;
+	access_log /webapps/stickerfiend/environment_3_8_2/logs/nginx-vue-access.log;
+
+	ssl_certificate /etc/letsencrypt/live/stickerfiend.net/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/stickerfiend.net/privkey.pem;
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+	ssl_prefer_server_ciphers on;
+	ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+	charset utf-8;
+	root /webapps/stickerfiend/stickerfiend_vue/dist;
+	index index.html index.htm;
+
+	location / {
+		root /webapps/stickerfiend/stickerfiend_vue/dist;
+		try_files $uri /index.html;
+	}
+}
