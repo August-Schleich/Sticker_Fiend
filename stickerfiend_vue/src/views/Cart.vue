@@ -1,17 +1,17 @@
 <template>
     <div class = "page=cart">
         <div class = "columns is-multiline">
-                <div class = "column is-12">
+                <div class = "column is-12" >
                     <h1 class ="title" style="color:white">Cart</h1>
                 </div>
-                <div class = "column is-12 box">
-                      <table class="table is-fullwidth" v-if="cartTotalLength">
-                    <thead>
+                <div class = "column is-12 box"   >
+                      <table class="table is-fullwidth " style="table-layout:fixed;width:100%;" v-if="cartTotalLength">
+                    <thead >
                         <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
+                            <th  >Product</th>
+                            <th class = "pl-5" >Price</th>
+                            <th >Quantity</th>
+                            <th class = "pl-5">Total</th>
                             <th></th>
                         </tr>
                     </thead>
