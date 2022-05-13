@@ -1,4 +1,5 @@
 <template>
+
   <div class="home">
  <section class ="hero is-small is-dark mb-6"> 
   <div class = "hero-body has-text-centered">

@@ -1,4 +1,5 @@
 <template>
+
  <div id="wrapper">
    <nav class="navbar is-dark">
      <div class= "navbar-brand">
@@ -59,7 +60,7 @@
  <router-view/>
  </section>
  <footer class="footer">
-   <p class="has-text-centered">Copyright (c) 2022</p>
+   <p class="has-text-centered">Copyright (c) 2022 | Built by August </p>
    </footer>
 </div> 
 </template>
