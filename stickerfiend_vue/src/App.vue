@@ -61,6 +61,7 @@
  </section>
  <footer class="footer">
    <p class="has-text-centered">Copyright (c) 2022 | Built by August </p>
+   <p class="has-text-centered">(Demo website)</p>
    </footer>
 </div> 
 </template>

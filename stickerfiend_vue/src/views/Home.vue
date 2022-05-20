@@ -1,20 +1,21 @@
 <template>
 
   <div class="home">
- <section class ="hero is-small is-dark mb-6"> 
+ <section class ="hero is-small is-dark mb-4"> 
   <div class = "hero-body has-text-centered">
     <p class="title mb-6">
       Welcome to StickerFiend
     </p>
     <p class ="subtitle">
-      The Best Online Sticker Store
+       - The Best Online Sticker Store for Computer Programmers and Developers - 
     </p>
+    
   </div>
   </section>
 
   <div class="columns is-multiline">
     <div class ="column is-12">
-      <h2 class="is-size-2 has-text-centered " style="color:white">Latest Stickers</h2>
+      <h2 class="is-size-2 has-text-centered " style="color:white;">Latest Stickers</h2>
     </div>
      
       <ProductBox
